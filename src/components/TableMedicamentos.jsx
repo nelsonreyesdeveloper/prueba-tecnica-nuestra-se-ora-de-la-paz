@@ -137,7 +137,7 @@ const TableMedicamentos = () => {
 
             {
                 params !== null && (
-                    <Pagination className="justify-content-center">
+                    <Pagination className="justify-content-center mt-3">
                         <Pagination.First onClick={() => handlePageChange(1)} disabled={pages <= 1 || active === 1} />
                         <Pagination.Prev onClick={() => handlePageChange(active - 1)} disabled={pages <= 1 || active === 1} />
                         {items}
