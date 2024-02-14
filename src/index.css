@@ -1,0 +1,78 @@
+/* Overlay */
+.imagen-overlay, .imagen-overlay-movil {
+    position: relative;
+    width: 100%;
+    transition: transform 0.4s ease;
+    /* Añade transición para el efecto de escala */
+}
+
+p{
+    margin-bottom: 0 !important;
+}
+select.mb-2{
+    margin-bottom: 0 !important;
+}
+.imagen-overlay:hover {
+    transform: scale(1.04);
+    /* Escala la imagen al 110% en el hover */
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    /* Añade transición para el cambio de opacidad */
+}
+
+.imagen-overlay:hover .overlay {
+    opacity: 1;
+    /* Hace que el overlay sea visible al pasar el mouse sobre la imagen */
+}
+
+
+.imagen-overlay-movil .overlay {
+    opacity: 1;
+}
+
+/* Margin top */
+.mat-5 {
+    margin-top: 30px !important;
+}
+
+
+
+/* Imagenes */
+.imagen-overlay {
+    display: none;
+}
+
+@media(min-width: 768px) {
+    .imagen-overlay {
+        display: block;
+    }
+
+    .imagen-overlay-movil {
+        display: none;
+    }
+}
+
+
+
+
+
+
+/* Boton login */
+.w-md-50 {
+    width: 100%;
+}
+
+@media(min-width: 768px) {
+    .w-md-50 {
+        width: auto;
+    }
+}
