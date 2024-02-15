@@ -81,10 +81,16 @@ const Login = () => {
                 <Form.Group className="mb-3" controlId="formGroupEmail">
                     <Form.Label className='text-uppercase fw-bold' >Usuario</Form.Label>
                     <Form.Control {...register("usuario", { required: true })} type="text" placeholder="Introduce el usuario" />
+                    {
+                        errors.usuario && <p className='text-danger'>El usuario es obligatorio</p>
+                    }
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formGroupPassword">
                     <Form.Label className='text-uppercase fw-bold'>Contraseña</Form.Label>
                     <Form.Control {...register("password", { required: true })} type="password" placeholder="Contraseña" />
+                    {
+                        errors.password && <p className='text-danger'>La contraseña es obligatoria</p>
+                    }
                 </Form.Group>
 
                 <div className='w-100 d-flex justify-content-end'>
