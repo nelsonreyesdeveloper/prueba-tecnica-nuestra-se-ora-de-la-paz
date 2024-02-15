@@ -29,6 +29,10 @@ const UpdateMedicamento = ({ handleClose, medicamento }) => {
             return
         }
 
+        /*eliminar prefijo de costo y precio  */
+        data.costo = data.costo.replace('$', '')
+        data.precioVenta = data.precioVenta.replace('$', '')
+
         data.costo = parseInt(data.costo)
         data.precioVenta = parseInt(data.precioVenta)
 
@@ -39,12 +43,9 @@ const UpdateMedicamento = ({ handleClose, medicamento }) => {
             toast.success("Medicamento actualizado con exito")
         }
     }
-    useEffect(() => {
-        setValue('costo', medicamento.costo);
-        setValue('precioVenta', medicamento.precio_venta);
-    }, [medicamento.costo, setValue, medicamento.precio_venta]);
-
-
+    const validateNoSingleSpace = (value) => {
+        return value.trim() !== ""; // Devuelve true si el valor después de quitar los espacios en blanco al inicio y al final no es una cadena vacía.
+    };
 
     return (
         <>
@@ -58,14 +59,26 @@ const UpdateMedicamento = ({ handleClose, medicamento }) => {
                         <Col md={6} className="mb-2">
                             <FormGroup>
                                 <Form.Label className='fw-bold'>Nombre</Form.Label>
-                                <Form.Control {...register("nombre", { required: true })} type="text" placeholder="Nombre" defaultValue={medicamento.nombre} />
+                                <Form.Control {...register("nombre", { required: true , validate: validateNoSingleSpace})} type="text" placeholder="Nombre" defaultValue={medicamento.nombre} />
+                                {
+                                    errors?.nombre?.type === 'required' && <span className='text-danger'>El nombre es obligatorio</span>
+                                }
+                                {
+                                    errors?.nombre?.type === 'validate' && <span className='text-danger'>El nombre no debe contener espacios en blanco</span>
+                                }
                             </FormGroup>
                         </Col>
 
                         <Col md={6} className="mb-2">
                             <FormGroup>
                                 <Form.Label className='fw-bold'>Proveedor</Form.Label>
-                                <Form.Control {...register("proveedor", { required: true })} type="text" placeholder="Proveedor" defaultValue={medicamento.proveedor} />
+                                <Form.Control {...register("proveedor", { required: true, validate: validateNoSingleSpace })} type="text" placeholder="Proveedor" defaultValue={medicamento.proveedor} />
+                                {
+                                    errors?.proveedor?.type === 'required' && <span className='text-danger'>El proveedor es obligatorio</span>
+                                }
+                                {
+                                    errors?.proveedor?.type === 'validate' && <span className='text-danger'>El proveedor no debe contener espacios en blanco</span>
+                                }
                             </FormGroup>
                         </Col>
                     </Row>
@@ -77,15 +90,17 @@ const UpdateMedicamento = ({ handleClose, medicamento }) => {
                                 <CurrencyInput
                                     defaultValue={medicamento.costo}
                                     className='form-control'
-                                    id="costo-label"
-                                    name="costo-name"
                                     placeholder="Costo"
                                     decimalsLimit={0}
                                     prefix='$'
-                                    onValueChange={(value, name, values) => {
-                                        setValue('costo', value)
-                                    }}
+                                    {...register("costo", { required: true, validate: validateNoSingleSpace })}
                                 />
+                                {
+                                    errors?.costo?.type === 'required' && <span className='text-danger'>El costo es obligatorio</span>
+                                }
+                                {
+                                    errors?.costo?.type === 'validate' && <span className='text-danger'>El costo no debe contener espacios en blanco</span>
+                                }
                             </FormGroup>
                         </Col>
 
@@ -95,13 +110,17 @@ const UpdateMedicamento = ({ handleClose, medicamento }) => {
                                 <CurrencyInput
                                     defaultValue={medicamento.precio_venta} // Establece el valor por defecto aquí
                                     className='form-control'
-                                    id="precio-venta-label"
-                                    name="precio-venta-name"
                                     placeholder="Precio de venta"
                                     decimalsLimit={0}
                                     prefix='$'
-                                    onValueChange={(value, name, values) => setValue('precioVenta', value)}
+                                    {...register("precioVenta", { required: true, validate: validateNoSingleSpace })}
                                 />
+                                {
+                                    errors?.precioVenta?.type === 'required' && <span className='text-danger'>El precio de venta es obligatorio</span>
+                                }
+                                {
+                                    errors?.precioVenta?.type === 'validate' && <span className='text-danger'>El precio de venta no debe contener espacios en blanco</span>
+                                }
                             </FormGroup>
                         </Col>
                     </Row>
@@ -117,7 +136,7 @@ const UpdateMedicamento = ({ handleClose, medicamento }) => {
                 </Form>
 
             </Modal.Body>
-        
+
         </>
     )
 
