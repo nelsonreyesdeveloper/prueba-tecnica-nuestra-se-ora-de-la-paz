@@ -18,35 +18,38 @@ const AdminLayout = () => {
     const handleShow = () => setShow(true);
 
     return (
-        <>
-            <Header />
-            <Container fluid="lg" className=' mat-5'>
+        <div className='d-flex flex-column justify-content-between min-vh-100'>
+            <div>
+                <Header />
+                <Container fluid="lg" className=' mat-5'>
 
-                <Row xs={1} md={2} className='d-flex justify-content-center'>
+                    <Row xs={1} md={2} className='d-flex justify-content-center'>
 
-                    <Col className="col-md-12">
-                        <Button variant="primary w-md-50" onClick={handleShow}>
-                            Nuevo Medicamento
-                        </Button>
+                        <Col className="col-md-12">
+                            <Button variant="primary w-md-50" onClick={handleShow}>
+                                Nuevo Medicamento
+                            </Button>
 
-                        <Filters></Filters>
+                            <Filters></Filters>
 
 
-                        <TableMedicamentos></TableMedicamentos>
-                    </Col>
+                            <TableMedicamentos></TableMedicamentos>
+                        </Col>
 
-                </Row>
-                <ModalMedicamento show={show} handleClose={handleClose} >
-                    <NuevoMedicamento handleClose={handleClose}></NuevoMedicamento>
-                </ModalMedicamento>
+                    </Row>
+                    <ModalMedicamento show={show} handleClose={handleClose} >
+                        <NuevoMedicamento handleClose={handleClose}></NuevoMedicamento>
+                    </ModalMedicamento>
 
-            </Container >
+                </Container >
+            </div>
+
 
 
             <Footer></Footer>
 
 
-        </>
+        </div>
     )
 }
 
