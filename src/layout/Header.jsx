@@ -13,7 +13,7 @@ import { useMedicamentos } from '../hooks/useMedicamentosHook';
 function OffcanvasExample() {
     const expand = 'lg';
     const navigate = useNavigate();
-    const { setPageActive } = useMedicamentos()
+    const { setPageActive, setLimite, setFiltro} = useMedicamentos()
     const { token, setToken } = useAuth()
 
 
@@ -45,7 +45,7 @@ function OffcanvasExample() {
                             <Nav className="justify-content-end flex-grow-1 pe-3">
                                 {
                                     token && (
-                                        <Nav.Link onClick={() => { localStorage.removeItem('token'), setToken(null), setPageActive(1) }} >Cerrar sesión</Nav.Link>
+                                        <Nav.Link onClick={() => { localStorage.removeItem('token'), setToken(null), setPageActive(1), setLimite(10), setFiltro('') }} >Cerrar sesión</Nav.Link>
                                     )
                                 }
 
