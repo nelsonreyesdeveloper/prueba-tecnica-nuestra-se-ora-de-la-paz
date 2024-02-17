@@ -32,6 +32,11 @@ const NuevoMedicamento = ({ handleClose }) => {
         data.costo = data.costo.replace('$', '')
         data.precioVenta = data.precioVenta.replace('$', '')
 
+        /* Eliminar todas las comas */
+        data.costo = data.costo.replace(/,/g, '');
+        data.precioVenta = data.precioVenta.replace(/,/g, '');
+
+        /* Pasar a enteros */
         data.costo = parseInt(data.costo)
         data.precioVenta = parseInt(data.precioVenta)
 

@@ -32,7 +32,13 @@ const UpdateMedicamento = ({ handleClose, medicamento }) => {
         /*eliminar prefijo de costo y precio  */
         data.costo = data.costo.replace('$', '')
         data.precioVenta = data.precioVenta.replace('$', '')
+        console.log(data)
 
+        /* Eliminar todas las comas */
+        data.costo = data.costo.replace(/,/g, '');
+        data.precioVenta = data.precioVenta.replace(/,/g, '');
+
+        /* Pasar a enteros */
         data.costo = parseInt(data.costo)
         data.precioVenta = parseInt(data.precioVenta)
 
@@ -59,7 +65,7 @@ const UpdateMedicamento = ({ handleClose, medicamento }) => {
                         <Col md={6} className="mb-2">
                             <FormGroup>
                                 <Form.Label className='fw-bold'>Nombre</Form.Label>
-                                <Form.Control {...register("nombre", { required: true , validate: validateNoSingleSpace})} type="text" placeholder="Nombre" defaultValue={medicamento.nombre} />
+                                <Form.Control {...register("nombre", { required: true, validate: validateNoSingleSpace })} type="text" placeholder="Nombre" defaultValue={medicamento.nombre} />
                                 {
                                     errors?.nombre?.type === 'required' && <span className='text-danger'>El nombre es obligatorio</span>
                                 }
